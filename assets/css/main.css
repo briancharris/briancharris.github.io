@@ -181,7 +181,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: "Tinos", serif;
 		font-weight: 900;
 		line-height: 1.5;
 		letter-spacing: 0.075em;
@@ -3515,11 +3515,13 @@ input, select, textarea {
 		-webkit-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
-		height: 20rem;
+		height: 15rem;
 		padding-bottom: 8rem;
 		position: relative;
 		text-align: center;
 		z-index: 2;
+		margin-top: 0;
+		padding-top: 0;
 	}
 
 		#header input, #header select, #header textarea {
@@ -3563,16 +3565,18 @@ input, select, textarea {
 			-ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -ms-transform 0.5s ease, visibility 0.5s;
 			transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
 			pointer-events: auto;
+			display: block;
 			border-style: solid;
 			border-color: #ffffff;
 			border-width: 5px !important;
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: "Tinos", serif;
 			font-size: 2.25rem;
-			font-weight: 900;
-			letter-spacing: 0.075em;
-			line-height: 1;
+			font-weight: 700;
+			letter-spacing: -0.075em;
+			line-height: 0.80;
 			padding: 1rem 1.75rem;
 			text-transform: uppercase;
+			text-align: justify;
 			visibility: visible;
 		}
 
