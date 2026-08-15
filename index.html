@@ -639,7 +639,7 @@
     const formSuccess = document.getElementById('form-success');
     const submitBtn = document.getElementById('submit-btn');
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Show loading state
@@ -649,20 +649,44 @@
       submitBtn.disabled = true;
       submitBtn.classList.add('opacity-70');
 
-      // Simulate send (replace with actual form endpoint)
-      setTimeout(() => {
+      try {
+        // Actually send the data to Formcarry
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Success! Reset button and show success message
+          btnText.textContent = 'Send Message';
+          btnArrow.classList.remove('hidden');
+          btnSpinner.classList.add('hidden');
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70');
+          
+          formSuccess.classList.remove('hidden');
+          contactForm.reset();
+
+          setTimeout(() => {
+            formSuccess.classList.add('hidden');
+          }, 5000);
+        } else {
+          // Formcarry returned an error
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        // Network error or Formcarry error
+        console.error('Error:', error);
         btnText.textContent = 'Send Message';
         btnArrow.classList.remove('hidden');
         btnSpinner.classList.add('hidden');
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-70');
-        formSuccess.classList.remove('hidden');
-        contactForm.reset();
-
-        setTimeout(() => {
-          formSuccess.classList.add('hidden');
-        }, 5000);
-      }, 1500);
+        alert('Oops! Something went wrong. Please try again or email us directly.');
+      }
     });
   </script>
 </body>
